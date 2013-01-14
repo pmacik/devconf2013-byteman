@@ -1,4 +1,4 @@
-defconf2013-byteman
+devconf2013-byteman
 ===================
 
-The sources for Byteman lab on DefConf 2013
+The sources for Byteman lab on DevConf 2013
