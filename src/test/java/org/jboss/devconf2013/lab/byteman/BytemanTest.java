@@ -49,7 +49,7 @@ public class BytemanTest extends BMNGRunner {
          clazz.doSomething();
       } catch (IOException e) {
          e.printStackTrace();
-         Assert.fail("The java.io.IOException should no be thrown at this point.");
+         Assert.fail("The java.io.IOException should not be thrown at this point.");
       }
    }
 
@@ -59,7 +59,7 @@ public class BytemanTest extends BMNGRunner {
          clazz.doSomethingElse();
       } catch (FileNotFoundException e) {
          e.printStackTrace();
-         Assert.fail("The java.io.FileNotFoundException should no be thrown at this point.");
+         Assert.fail("The java.io.FileNotFoundException should not be thrown at this point.");
       }
    }
 }
