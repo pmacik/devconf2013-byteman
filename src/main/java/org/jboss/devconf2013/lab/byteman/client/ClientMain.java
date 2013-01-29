@@ -21,9 +21,9 @@ public class ClientMain {
 		System.out.printf("Sent message: %s", message);
 	}
 
-	private String receiveResponse() throws IOException {
+	private String receiveResponse() throws IOException, InterruptedException {
 		final byte[] data = new byte[sentBytes];
-		new Thread(new Runnable() {
+		Thread t = new Thread(new Runnable() {
 
 			public void run() {
 				try {
@@ -33,7 +33,9 @@ public class ClientMain {
 				}
 			}
 
-		}).run();
+		});
+		t.run();
+		t.join();
 		return new String(data, Charset.defaultCharset());
 	}
 
@@ -41,7 +43,7 @@ public class ClientMain {
 		socket.close();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		int port = 0;
 		String message = "";
 		try {
