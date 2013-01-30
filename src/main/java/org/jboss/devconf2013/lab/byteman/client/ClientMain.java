@@ -34,7 +34,7 @@ public class ClientMain {
 			}
 
 		});
-		t.run();
+		t.start();
 		t.join();
 		return new String(data, Charset.defaultCharset());
 	}
