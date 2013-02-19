@@ -2,7 +2,7 @@ package org.jboss.devconf2013.lab.byteman.client;
 
 import java.io.IOException;
 
-public class ClientMain {
+public class FixedClientMain {
 
 
 	public static void main(String[] args) throws IOException, InterruptedException {
@@ -18,7 +18,14 @@ public class ClientMain {
 		c.openSocket(port);
 		c.sendMessage(message + "\n");
 
+		System.out.print("Waiting for the response");
+		while (!c.responseComplete()) {
+			System.out.print(".");
+			Thread.sleep(100);
+		}
+		System.out.println();
 		c.receiveResponse();
+
 		System.out.printf("Response: %s\n", c.getResponse());
 		c.close();
 	}

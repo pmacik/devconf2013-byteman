@@ -78,5 +78,31 @@
 				</plugins>
 			</build>
 		</profile>
+		<profile>
+			<id>fixed-client</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>java</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<mainClass>org.jboss.devconf2013.lab.byteman.client.FixedClientMain</mainClass>
+							<arguments>
+								<argument>5050</argument>
+								<argument>Hello World!</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 </project>
