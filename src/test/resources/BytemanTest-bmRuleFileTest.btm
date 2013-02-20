@@ -3,5 +3,5 @@ CLASS org.jboss.devconf2013.lab.byteman.BMClass
 METHOD doSomethingElse
 AT ENTRY
 IF true
-DO throw FileNotFoundException()
+DO throw FileNotFoundException("ruleFile")
 ENDRULE

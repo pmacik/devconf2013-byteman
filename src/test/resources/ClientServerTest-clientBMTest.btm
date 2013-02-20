@@ -1,0 +1,9 @@
+RULE "clientBMTest"
+CLASS org.jboss.devconf2013.lab.byteman.client.Client
+METHOD receiveResponse
+AT ENTRY
+IF true
+DO
+System.out.println("Sleeping from ByteMan");
+Thread.sleep(2000);
+ENDRULE

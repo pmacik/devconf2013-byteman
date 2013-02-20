@@ -4,8 +4,8 @@ import java.io.IOException;
 
 public class ClientMain {
 
-
-	public static void main(String[] args) throws IOException, InterruptedException {
+	public static void main(String... args) throws IOException,
+			InterruptedException {
 		int port = 0;
 		String message = "";
 		try {

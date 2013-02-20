@@ -1,0 +1,9 @@
+RULE "clientMain"
+CLASS org.jboss.devconf2013.lab.byteman.client.ClientMain
+METHOD main
+AT INVOKE Client.receiveResponse()
+IF true
+DO
+System.out.println("Sleeping from ByteMan");
+Thread.sleep(2000);
+ENDRULE
