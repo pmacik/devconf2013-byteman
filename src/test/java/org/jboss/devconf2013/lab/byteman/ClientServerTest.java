@@ -12,26 +12,49 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+/**
+ * Testsuite for {@link Client} and {@link Server} interactions.
+ * 
+ * @author Pavel Macík <pmacik@redhat.com>
+ */
 public class ClientServerTest extends BMNGRunner {
+	/**
+	 * The executor service for server thread.
+	 */
+	private ExecutorService serverExecutorService = null;
 
-	private ExecutorService es = null;
+	/**
+	 * String constant.
+	 */
 	private static final String REQUEST_MESSAGE = "Hello World!";
 	private static final String RESPONSE_MESSAGE = "!dlroW olleH ";
 
+	/**
+	 * The method executed before each test. It prepares the execution
+	 * environment for server thread.
+	 */
 	@BeforeTest
 	public void beforeTest() {
-		es = Executors.newSingleThreadExecutor();
+		serverExecutorService = Executors.newSingleThreadExecutor();
 	}
 
+	/**
+	 * The method executed after each test. It clears the execution environment
+	 * of the server.
+	 */
 	@AfterTest
 	public void afterTest() {
-		es.shutdown();
+		serverExecutorService.shutdown();
 	}
 
+	/**
+	 * Test the wrong usage of the {@link Client} for connecting to the
+	 * {@link Server}.
+	 */
 	@Test(enabled = true)
 	public void clientTest() throws Exception {
 		Server server = new Server(5050);
-		es.submit(server);
+		serverExecutorService.submit(server);
 
 		Thread.sleep(5000);
 
@@ -47,10 +70,14 @@ public class ClientServerTest extends BMNGRunner {
 		c.close();
 	}
 
+	/**
+	 * Test the proper usage of the {@link Client} for connecting to the
+	 * {@link Server}.
+	 */
 	@Test(enabled = true)
 	public void clientFixedTest() throws Exception {
 		Server server = new Server(5050);
-		es.submit(server);
+		serverExecutorService.submit(server);
 
 		Client c = new Client();
 		c.openSocket(5050);
@@ -70,11 +97,18 @@ public class ClientServerTest extends BMNGRunner {
 		c.close();
 	}
 
+	/**
+	 * Test the wrong usage of the {@link Client} for connecting to the
+	 * {@link Server} with Byteman rule attached which reveal the actual
+	 * problem. The implementation (code) of the method is identical to
+	 * {@link #clientTest()} method but the bytecode is modified by Byteman at
+	 * runtime.
+	 */
 	@Test(enabled = true)
 	@BMScript(value = "ClientServerTest-clientBMTest.btm")
 	public void clientBMTest() throws Exception {
 		Server server = new Server(5050);
-		es.submit(server);
+		serverExecutorService.submit(server);
 
 		Thread.sleep(5000);
 

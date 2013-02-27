@@ -2,8 +2,17 @@ package org.jboss.devconf2013.lab.byteman.client;
 
 import java.io.IOException;
 
+/**
+ * 
+ * The client application using the ${@link Client} properly.
+ * 
+ * @author Martin Večeřa <mvecera@redhat.com>
+ */
 public class FixedClientMain {
 
+	/**
+	 * Main method.
+	 */
 	public static void main(String... args) throws IOException,
 			InterruptedException {
 		int port = 0;

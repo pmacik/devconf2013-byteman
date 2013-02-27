@@ -2,8 +2,15 @@ package org.jboss.devconf2013.lab.byteman.client;
 
 import java.io.IOException;
 
+/**
+ * The client-side application using the ${@link Client} the wrong way.
+ * 
+ * @author Martin Večeřa <mvecera@redhat.com>
+ */
 public class ClientMain {
-
+	/**
+	 * Main method.
+	 */
 	public static void main(String... args) throws IOException,
 			InterruptedException {
 		int port = 0;

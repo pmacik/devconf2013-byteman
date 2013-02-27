@@ -2,8 +2,16 @@ package org.jboss.devconf2013.lab.byteman.server;
 
 import java.io.IOException;
 
+/**
+ * The server-side application using the ${@link Server}.
+ * 
+ * @author Martin Večeřa <mvecera@redhat.com>, Pavel Macík <pmacik@redhat.com>
+ */
 public class ServerMain {
 
+	/**
+	 * Main method.
+	 */
 	public static void main(String[] args) throws IOException,
 			InterruptedException {
 		int port = 0;

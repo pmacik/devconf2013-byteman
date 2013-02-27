@@ -8,22 +8,51 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.charset.Charset;
 
+/**
+ * Server library working as TCP echo server.
+ * 
+ * @author Pavel Macík <pmacik@redhat.com>
+ */
 public class Server implements Runnable {
+
+	/**
+	 * Port the server is listening on.
+	 */
 	private int port;
+
+	/**
+	 * The internal flag indicating whether the server is running.
+	 */
 	private boolean running;
 
+	/**
+	 * Main constructor.
+	 */
 	public Server(int port) {
+		super();
 		this.port = port;
 	}
 
+	/**
+	 * Stop the server.
+	 */
 	public void stopRunning() {
 		this.running = false;
 	}
 
+	/**
+	 * Indicates whether the server is running-
+	 * 
+	 * @param <code>true</code> if the server is running, <code>false</code>
+	 *        otherwise.
+	 */
 	public boolean isRunning() {
 		return running;
 	}
 
+	/**
+	 * The main method implementing the echo server.
+	 */
 	public void run() {
 		running = true;
 		ServerSocket sc = null;
@@ -65,7 +94,5 @@ public class Server implements Runnable {
 				}
 			}
 		}
-
 	}
-
 }
